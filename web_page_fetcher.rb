@@ -1,3 +1,7 @@
+require 'uri'
+require 'net/http'
+require 'fileutils'
+
 class WebPageFetcher
   def initialize(base_dir)
     @base_dir = base_dir
