@@ -19,10 +19,10 @@ build-app:
 	docker build -t $(APP_IMAGE_NAME) .
 
 win-app: build-app
-	docker run --name $(APP_CONTAINER_NAME) -v ${WINDOWS_DIR}:/app/saved_web_pages web_page_fetcher_app ruby fetch_web_pages.rb --metadata $(ARGS)
+	docker run --name $(APP_CONTAINER_NAME) -v ${WINDOWS_DIR}/pages:/app/saved_web_pages web_page_fetcher_app ruby fetch_web_pages.rb $(ARGS)
 
 linux-app: build-app
-	docker run --name $(APP_CONTAINER_NAME) -v ${LINUX_DIR}:/app/saved_web_pages web_page_fetcher_app ruby fetch_web_pages.rb --metadata $(ARGS)
+	docker run --name $(APP_CONTAINER_NAME) -v ${LINUX_DIR}/pages:/app/saved_web_pages web_page_fetcher_app ruby fetch_web_pages.rb $(ARGS)
 
 clean-app:
 	docker rm $(APP_CONTAINER_NAME)

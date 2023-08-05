@@ -5,20 +5,13 @@ if ARGV.empty?
 else
   base_dir = 'saved_web_pages'
   fetcher = WebPageFetcher.new(base_dir)
+  metadata = ARGV.include?('--metadata')
+  with_assets = ARGV.include?('--with_assets')
 
-  if ARGV.first == '--metadata'
-    urls = ARGV[1..-1]
-    urls.each do |url|
-      puts "Fetching #{url}..."
-      fetcher.fetch_and_save(url, metadata: true)
-      puts ""
-    end
-  else
-    urls = ARGV
-    urls.each do |url|
-      puts "Fetching #{url}..."
-      fetcher.fetch_and_save(url)
-      puts ""
-    end
+  urls = ARGV.select { |arg| !arg.start_with?('--') }
+  urls.each do |url|
+    puts "Fetching #{url}..."
+    fetcher.fetch_and_save(url, metadata: metadata, with_assets: with_assets)
+    puts ""
   end
 end

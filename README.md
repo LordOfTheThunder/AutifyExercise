@@ -4,15 +4,23 @@
 I've tested this solution on both a Windows and a Mac.
 If you're running this on a Linux, the linux solution below should work just like it worked for a Mac, but please let me know if there are any problems
 
+## Arguments
+
+As per requirements of the exercise, the API can receive URLs and 2 flags (`--metadata` and `--with_assets`)
+`--metadata` - also prints the metadata in addition to downloading the htmls
+`--with_assets` - downloads the page assets in addition to downloading the HTML.
+
 ## How to run
+
+First, please note that after running the `Makefile` docker commands, the htmls and their assets will appear inside the `pages` directory. This can be changed by changing the persistent volume inside `Makefile`
 
 ### Makefile
 
 You can use the commands I defined in `Makefile` for simpler execution of the script and tests.
-To run the app, simply run:
+To run the app, simply run: `make run-linux-app` or `make-win-app` with args. Example:
 ```
-make run-linux-app ARGS="https://www.google.com https://autify.com" # linux
-make run-win-app ARGS="https://www.google.com https://autify.com" # windows
+make run-linux-app ARGS="--metadata --with_assets https://www.google.com https://autify.com" # linux
+make run-win-app ARGS="--metadata --with_assets https://www.google.com https://autify.com" # windows
 ```
 
 To run the tests:
