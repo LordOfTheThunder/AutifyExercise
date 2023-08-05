@@ -17,6 +17,8 @@ class WebPageFetcher
 
     File.write(save_path, response.body)
 
+    save_assets(response.body, host)
+
     if metadata
       print_metadata(url, response)
     end
@@ -47,5 +49,20 @@ class WebPageFetcher
     puts "num_links: #{metadata['num_links']}"
     puts "images: #{metadata['images']}"
     puts "last_fetch: #{metadata['last_fetch']}"
+  end
+
+  def save_assets(html_content, host)
+    html_content.scan(/(src|href)=["'](.*?)["']/i).each do |match|
+      asset_url = match[1]
+      next if asset_url.start_with?('data:') || asset_url.start_with?('#')
+
+      asset_uri = URI.join("http://#{host}", asset_url)
+
+      asset_response = Net::HTTP.get_response(asset_uri)
+      asset_filename = File.basename(asset_url)
+      asset_save_path = File.join(@base_dir, asset_filename)
+
+      File.write(asset_save_path, asset_response.body)
+    end
   end
 end
