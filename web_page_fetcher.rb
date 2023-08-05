@@ -12,23 +12,34 @@ class WebPageFetcher
     Net::HTTP.get_response(uri)
   end
 
-  def fetch_and_save(url)
+  def fetch_and_save(url, metadata: false)
     response = fetch_page(url)
-    host = URI(url).host.gsub(/www\./, '')
+    host = URI(url).host
 
     save_path = File.join(@base_dir, "#{host}.html")
+    
+    create_dir_if_missing
+
     File.write(save_path, response.body)
 
-    puts "Web page saved to #{save_path}"
+    if metadata
+      print_metadata(url, response)
+    end
   end
 
-  def print_metadata(url)
-    response = fetch_page(url)
+  private
 
+  def create_dir_if_missing
+    unless File.directory?(@base_dir)
+      FileUtils.mkdir_p(@base_dir)
+    end
+  end
+
+  def print_metadata(url, fetched_page)
     metadata = {
       'site' => URI(url).host,
-      'num_links' => response.body.scan(/<a /i).count,
-      'images' => response.body.scan(/<img /i).count,
+      'num_links' => fetched_page.body.scan(/<a /i).count,
+      'images' => fetched_page.body.scan(/<img /i).count,
       'last_fetch' => Time.now.utc.strftime('%a %b %d %Y %H:%M %Z')
     }
 

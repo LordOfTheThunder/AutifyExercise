@@ -10,7 +10,7 @@ else
     urls = ARGV[1..-1]
     urls.each do |url|
       puts "Fetching #{url}..."
-      fetcher.print_metadata(url)
+      fetcher.fetch_and_save(url, metadata: true)
       puts ""
     end
   else
