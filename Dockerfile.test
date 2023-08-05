@@ -1,0 +1,6 @@
+FROM ruby:latest
+WORKDIR /app
+COPY . /app/
+RUN bundle install
+CMD ["ruby", "-I/app", "-e", "Dir.glob('tests/**/*_test.rb').each { |f| require f }"]
+
