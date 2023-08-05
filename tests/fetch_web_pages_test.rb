@@ -7,7 +7,7 @@ class TestWebPageFetcher < Minitest::Test
     fetcher = WebPageFetcher.new('test_data')
     url = 'https://www.example.com'
 
-    stub_request(:any, url).to_return(status: 200, body: 'Mocked HTML')  # Stub the HTTP request
+    stub_request(:any, url).to_return(status: 200, body: 'Mocked HTML')
 
     fetcher.fetch_and_save(url)
 
@@ -18,7 +18,7 @@ class TestWebPageFetcher < Minitest::Test
     fetcher = WebPageFetcher.new('test_data')
     url = 'https://www.invalidurl.com'
 
-    stub_request(:any, url).to_return(status: 404)  # Stub the HTTP request
+    stub_request(:any, url).to_return(status: 404)
 
     fetcher.fetch_and_save(url)
 
