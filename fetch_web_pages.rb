@@ -1,7 +1,7 @@
 require_relative 'web_page_fetcher'
 
 if ARGV.empty?
-  puts "Usage: ruby fetch_web_page.rb [--metadata] <URL1> <URL2> ..."
+  puts "Usage: ruby fetch_web_pages.rb [--metadata] <URL1> <URL2> ..."
 else
   base_dir = 'saved_web_pages'
   fetcher = WebPageFetcher.new(base_dir)

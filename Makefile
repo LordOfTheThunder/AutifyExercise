@@ -6,10 +6,10 @@ APP_CONTAINER_NAME = app_container
 WINDOWS_DIR := ${CURDIR}
 LINUX_DIR = "$(shell pwd)"
 
-build-test:
+build-tests:
 	docker build -t $(TEST_IMAGE_NAME) -f Dockerfile.test .
 
-test: build-test
+test: build-tests
 	docker run --name $(TEST_CONTAINER_NAME) $(TEST_IMAGE_NAME) || true
 
 clean-test:

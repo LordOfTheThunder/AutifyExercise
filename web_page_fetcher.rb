@@ -7,11 +7,6 @@ class WebPageFetcher
     @base_dir = base_dir
   end
 
-  def fetch_page(url)
-    uri = URI(url)
-    Net::HTTP.get_response(uri)
-  end
-
   def fetch_and_save(url, metadata: false)
     response = fetch_page(url)
     host = URI(url).host
@@ -28,6 +23,11 @@ class WebPageFetcher
   end
 
   private
+
+  def fetch_page(url)
+    uri = URI(url)
+    Net::HTTP.get_response(uri)
+  end
 
   def create_dir_if_missing
     unless File.directory?(@base_dir)

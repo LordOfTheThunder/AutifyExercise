@@ -1,20 +1,26 @@
 # Web Fetcher
 
+## Disclaimer
+I've tested this solution on both a Windows and a Mac.
+If you're running this on a Linux, the linux solution below should work just like it worked for a Mac, but please let me know if there are any problems
+
 ## How to run
-The commands below will explain how to run the app using Docker native commands based on platform.
-You can also use the `Makefile` for simpler execution of the script and tests.
+
+### Makefile
+
+You can use the commands I defined in `Makefile` for simpler execution of the script and tests.
 To run the app, simply run:
 ```
-make build-app
 make run-linux-app ARGS="https://www.google.com https://autify.com" # linux
 make run-win-app ARGS="https://www.google.com https://autify.com" # windows
 ```
 
 To run the tests:
 ```
-make build-tests
 make run-tests
 ```
+
+### Docker Commands
 
 To build the docker image, run:
 ```
