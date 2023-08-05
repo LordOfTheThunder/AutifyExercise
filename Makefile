@@ -4,7 +4,7 @@ APP_IMAGE_NAME = web_page_fetcher_app
 APP_CONTAINER_NAME = app_container
 
 WINDOWS_DIR := ${CURDIR}
-LINUX_DIR = "$(pwd)"
+LINUX_DIR = "$(shell pwd)"
 
 build-test:
 	docker build -t $(TEST_IMAGE_NAME) -f Dockerfile.test .
