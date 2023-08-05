@@ -6,8 +6,8 @@ If you're running this on a Linux, the linux solution below should work just lik
 
 ## Arguments
 
-As per requirements of the exercise, the API can receive URLs and 2 flags (`--metadata` and `--with_assets`)
-`--metadata` - also prints the metadata in addition to downloading the htmls
+As per requirements of the exercise, the API can receive URLs and 2 flags (`--metadata` and `--with_assets`)\
+`--metadata` - also prints the metadata in addition to downloading the htmls\
 `--with_assets` - downloads the page assets in addition to downloading the HTML.
 
 ## How to run
