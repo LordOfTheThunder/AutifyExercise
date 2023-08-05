@@ -6,7 +6,8 @@ You can also use the `Makefile` for simpler execution of the script and tests.
 To run the app, simply run:
 ```
 make build-app
-make run https://www.google.com https://autify.com
+make run-linux-app ARGS="https://www.google.com https://autify.com" # linux
+make run-win-app ARGS="https://www.google.com https://autify.com" # windows
 ```
 
 To run the tests:

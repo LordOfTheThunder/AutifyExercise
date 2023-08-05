@@ -1,4 +1,3 @@
-
 require_relative 'web_page_fetcher'
 
 if ARGV.empty?
